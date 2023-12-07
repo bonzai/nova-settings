@@ -55,7 +55,7 @@ class NovaSettingsStore
 
     public function getSetting($settingKey, $default = null)
     {
-        if (isset($this->cache[$settingKey])) return $this->cache[$settingKey];
+        if (array_key_exists($settingKey, $this->cache)) return $this->cache[$settingKey];
         $this->cache[$settingKey] = NovaSettings::getSettingsModel()::getValueForKey($settingKey) ?? $default;
         return $this->cache[$settingKey];
     }
